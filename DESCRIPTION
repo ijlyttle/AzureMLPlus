@@ -1,0 +1,9 @@
+Package: AzureMLPlus
+Title: Additional functions to use with AzureML package
+Version: 0.0.0.9000
+Authors@R: 'Ian Lyttle <ian.lyttle@schneider-electric.com> [aut, cre]'
+Description: Additional functions to use with AzureML package
+Depends: R (>= 3.3.1)
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
