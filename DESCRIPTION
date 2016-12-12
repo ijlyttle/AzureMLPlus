@@ -9,3 +9,4 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/ijlyttle/AzureMLPlus
 BugReports: https://github.com/ijlyttle/AzureMLPlus/issues
+Imports: magrittr
