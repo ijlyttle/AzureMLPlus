@@ -1,12 +1,21 @@
 Package: AzureMLPlus
 Title: Additional functions to use with AzureML package
 Version: 0.0.0.9000
-Authors@R: 'Ian Lyttle <ian.lyttle@schneider-electric.com> [aut, cre]'
+Authors@R: c(
+    person(given = "Ian", family = "Lyttle", email = "ian.lyttle@schneider-electric.com", role = c("aut", "cre", "cph")),
+    person(family = "Schneider Electric", role = c("cph", "fnd"))
+  )
 Description: Additional functions to use with AzureML package
-Depends: R (>= 3.3.1)
+Depends:
+    R (>= 3.3.1)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/ijlyttle/AzureMLPlus
 BugReports: https://github.com/ijlyttle/AzureMLPlus/issues
-Imports: magrittr
+Imports:
+    AzureML,
+    magrittr
+Suggests:
+    testthat
+RoxygenNote: 5.0.1
