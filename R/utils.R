@@ -1,8 +1,17 @@
-#' validate that this is a valid endpoint
+#' Validate an endpoint
 #'
-#' @param endpoint    \code{AzureML::\link[AzureML]{endpoints}} (single member)
+#' Will throw an error or return the \code{endpoint}. If a service is sent, its default
+#' endpoint is returned.
+#'
+#' The source code for this code
+#' was taken from the source code AzureML package. Perhaps this function can be a part
+#' of the AzureML package so that the source code can be "returned".
+#'
+#' @param endpoint    \code{AzureML::\link[AzureML]{endpoints}} member or
+#'    \code{AzureML::\link[AzureML]{services}} member
 #'
 #' @return \code{endpoint}
+#' @export
 #'
 validate_endpoint <- function(endpoint){
 
