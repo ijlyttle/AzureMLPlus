@@ -11,7 +11,7 @@ validate_endpoint <- function(endpoint){
   # I would rather ask the AzureML maintainers if they would consider a
   # function like this one, then I could use theirs.
   #
-  if(is.Service(endpoint))
+  if(AzureML::is.Service(endpoint))
   {
     if(nrow(endpoint) > 1) endpoint = endpoint[1, ]
     default <- endpoint$DefaultEndpointName
@@ -19,7 +19,7 @@ validate_endpoint <- function(endpoint){
     endpoint <- subset(endpoint, Name = default)
   }
 
-  if(!is.Endpoint(endpoint)) {
+  if(!AzureML::is.Endpoint(endpoint)) {
     stop("Invalid endpoint. Use publishWebservice() or endpoints() to create or obtain a service endpoint.")
   }
 
