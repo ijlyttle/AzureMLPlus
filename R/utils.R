@@ -24,7 +24,7 @@ validate_endpoint <- function(endpoint){
   {
     if(nrow(endpoint) > 1) endpoint = endpoint[1, ]
     default <- endpoint$DefaultEndpointName
-    endpoint <- endpoints(attr(endpoint, "workspace"), endpoint)
+    endpoint <- AzureML::endpoints(attr(endpoint, "workspace"), endpoint)
     endpoint <- subset(endpoint, Name = default)
   }
 

@@ -5,7 +5,7 @@ Authors@R: c(
     person(given = "Ian", family = "Lyttle", email = "ian.lyttle@schneider-electric.com", role = c("aut", "cre", "cph")),
     person(family = "Schneider Electric", role = c("cph", "fnd"))
   )
-Description: Additional functions to use with AzureML package
+Description: Additional functions to use with AzureML package.
 Depends:
     R (>= 3.3.1)
 License: MIT + file LICENSE
@@ -16,7 +16,8 @@ BugReports: https://github.com/ijlyttle/AzureMLPlus/issues
 Imports:
     AzureML,
     magrittr,
-    xml2
+    xml2,
+    rvest
 Suggests:
     testthat,
     covr

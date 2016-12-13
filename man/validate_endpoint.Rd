@@ -14,7 +14,8 @@ validate_endpoint(endpoint)
 \code{endpoint}
 }
 \description{
-Will throw an error or return the \code{endpoint}.
+Will throw an error or return the \code{endpoint}. If a service is sent, its default
+endpoint is returned.
 }
 \details{
 The source code for this code
