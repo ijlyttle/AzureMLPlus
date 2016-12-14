@@ -4,6 +4,8 @@ Version: 0.0.0.9000
 Authors@R: c(
     person(given = "Ian", family = "Lyttle", email = "ian.lyttle@schneider-electric.com", role = c("aut", "cre", "cph")),
     person(family = "Schneider Electric", role = c("cph", "fnd"))
+    person(family = "Microsoft Corporation", role = c("ctb", "cph"),
+    comment = "AzureML package"),
   )
 Description: Additional functions to use with AzureML package.
 Depends:
