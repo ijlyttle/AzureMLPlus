@@ -19,7 +19,8 @@ Imports:
     magrittr,
     xml2,
     rvest,
-    curl
+    curl,
+    lubridate
 Suggests:
     testthat,
     covr,
