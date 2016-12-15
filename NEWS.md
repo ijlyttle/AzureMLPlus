@@ -2,7 +2,7 @@
 
 ## To do
 
-- reworks `consume_endpoint()` to use
+- reworks `consume_endpoint()` to use **httr* package
 
 - adds `encode_global_paramaters()`
 
@@ -10,9 +10,9 @@
 
 - adds `parse_response()` function to get a dataframe from a response body, using a response sample as a template
 
-- adds `request_body()`, `response_body()` accessors for `azureml_request_response`
-
 ## Done
+
+- adds `request_body()`, `response_body()` accessors for `azureml_request_response`
 
 - adds print method for `azureml_request_response` object
 
