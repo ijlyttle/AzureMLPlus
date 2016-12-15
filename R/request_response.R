@@ -14,8 +14,8 @@
 #'
 #' @return \code{\link{azureml_request_response}} object
 #'
-#' @seealso \code{\link{validate_inputs}}, \code{\link{validate_globalParam}}
-
+#' @seealso \code{\link{validate_inputs}}, \code{\link{validate_globalParameters}}
+#'
 consume_endpoint <- function(endpoint, inputs, globalParameters = NULL, retryDelay = 10,
                         .retry = 5){
 
@@ -37,11 +37,11 @@ consume_endpoint <- function(endpoint, inputs, globalParameters = NULL, retryDel
   # call API here
   success <- TRUE
   body_req_resp <-
-    call_api(apiKey, requestUrl, inputs,  globalParameters, retryDelay, .retry = .retry)
+    call_api(api_key, url, inputs,  globalParameters, retryDelay, .retry = .retry)
 
   response_timestamp <- Sys.time()
 
-  if (inherits(result, "error")) {
+  if (inherits(body_req_resp, "error")) {
     success <- FALSE
     response_body <- NULL
   }
@@ -115,7 +115,32 @@ azureml_request_response <- function(url, success,
 #' @return \code{x}
 #' @export
 #'
-azureml_request_response.print <- function(x, ...){
+print.azureml_request_response <- function(x, ...){
+
+  format_timestamp <- lubridate::stamp("2013-01-01T06:00:00Z", quiet = TRUE)
+
+  delta_time <-
+    (as.numeric(x$response_timestamp) - as.numeric(x$request_timestamp)) %>%
+    round(digits = 1) %>%
+    lubridate::as.duration()
+
+  format_size <- function(x){
+    x %>%
+    utils::object.size() %>%
+    format()
+  }
+
+  paste(
+    paste0("URL:\t\t\t", x$url),
+    paste0("Request timestamp:\t\t", format_timestamp(x$request_timestamp)),
+    paste0("Response timestamp:\t\t", format_timestamp(x$response_timestamp)),
+    paste0("Request-response duration:\t", format(delta_time)),
+    paste0("Request-body size:\t\t", format_size(x$request_body)),
+    paste0("Response-body size:\t\t", format_size(x$response_body)),
+    paste0("Success:\t\t\t", x$success),
+    sep = "\n"
+  ) %>%
+  cat()
 
   invisible(azureml_request_response)
 }
@@ -142,32 +167,33 @@ call_api <- function(apiKey, requestUrl, inputs, globalParameters,
                     retryDelay=10, .retry = 5) {
   # Set number of tries and HTTP status to 0
   result <- NULL
-  # Construct request payload
+  # Construct request body
   request_body <-
     list(
       Inputs = inputs,
-      GlobalParameters = globalParam
+      GlobalParameters = globalParameters
     ) %>%
-    toJSON(req, auto_unbox = TRUE, digits = 16)
+    jsonlite::toJSON(auto_unbox = TRUE, digits = 16)
 
   request_body_raw <-
     request_body %>%
     paste(collapse = "\n") %>%
     charToRaw()
 
-  h <- new_handle()
+  h <- curl::new_handle()
   headers <- list(`User-Agent` = "R",
                   `Content-Type` = "application/json",
                   `Authorization` = paste0("Bearer ", apiKey))
-  handle_setheaders(h, .list = headers)
-  handle_setopt(h,
+  curl::handle_setheaders(h, .list = headers)
+  curl::handle_setopt(h,
                 .list = list(
                   post = TRUE,
                   postfieldsize = length(request_body_raw),
                   postfields = request_body_raw
                 )
   )
-  r <- try_fetch(requestUrl, h, no_retry_on = 400, delay = retryDelay, .retry = .retry)
+  # ALERT! using :::
+  r <- AzureML:::try_fetch(requestUrl, h, no_retry_on = 400, delay = retryDelay, .retry = .retry)
   response_body <- rawToChar(r$content)
 
   success <- TRUE

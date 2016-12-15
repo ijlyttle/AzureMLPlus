@@ -27,7 +27,7 @@ get_request_sample <- function(endpoint){
     validate_endpoint() %>%
     `[[`("HelpLocation") %>%
     paste("score", sep = "/") %>%
-    scrape_text("#responseSummary pre")
+    scrape_text("#requestSummary pre")
 }
 
 #' Scrapes text from node

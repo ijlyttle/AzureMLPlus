@@ -4,7 +4,7 @@
 \alias{consume_endpoint}
 \title{Remix of AzureML consume() function}
 \usage{
-consume_endpoint(endpoint, Inputs, GlobalParam = NULL, retryDelay = 10,
+consume_endpoint(endpoint, inputs, globalParameters = NULL, retryDelay = 10,
   .retry = 5)
 }
 \arguments{
@@ -14,11 +14,11 @@ consume_endpoint(endpoint, Inputs, GlobalParam = NULL, retryDelay = 10,
 or simply an AzureML web service from
 \code{AzureML::\link[AzureML]{services}};}
 
-\item{Inputs}{list (named), inputs to be sent as the body of the request.
+\item{inputs}{list (named), inputs to be sent as the body of the request.
 This differs from (and is stricter than) the API for
 \code{AzureML::\link[AzureML]{consume}}}
 
-\item{GlobalParam}{list (named), global parameters}
+\item{globalParameters}{list (named), global parameters}
 
 \item{retryDelay}{numeric, time in seconds to delay before retrying
 in case of a server error}
@@ -33,6 +33,6 @@ This is a re-imagining of the \code{AzureML::\link[AzureML]{consume}} function.
 The API and documentation is adapted from this function.
 }
 \seealso{
-\code{\link{validate_inputs}}, \code{\link{validate_globalParam}}
+\code{\link{validate_inputs}}, \code{\link{validate_globalParameters}}
 }
 

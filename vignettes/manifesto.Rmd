@@ -63,9 +63,9 @@ It seems a good idea to start with the verbs.
 
 - `consume_endpoint`: `function(endpoint, ...)`
 
-- `url`, `success`, `request_timestamp`, `request_body`, `response_timestamp`, `response_body`, : `function(request_response)`
+- `url`, `success`, `request_timestamp`, `request_body`, `response_timestamp`, `response_body`, : `function(request_response)` **Note** we can just use the usual accessor function for now. Also - consider adding a `headers` member to the class. This may become clearer in a switch to **httr**.
 
-- `extract_data`: `function(response_body, response_sample, ...)`
+- `parse_response`: `function(response_body, response_sample, element = NULL)` If `element` is `NULL`, return the first dataframe.
 
 - `validate_inputs`: `function(inputs, request_sample)` for now, inputs have to be dataframes
 
