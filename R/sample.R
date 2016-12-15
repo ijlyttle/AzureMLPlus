@@ -1,31 +1,47 @@
-#' Get sample request/response payloads
+#' Get sample request/response
 #'
-#' For endpoints with request/response, these functions return sample
-#' json files.
+#' For endpoints that use request/response, use this function to get
+#' json-formatted text.
 #'
 #' @inheritParams validate_endpoint
 #'
 #' @return character, json format
+#' @seealso json_viewer
 #' @export
 #'
-sample_response <- function(endpoint){
+get_response_sample <- function(endpoint){
 
-  endpoint$HelpLocation %>%
+  endpoint %>%
+    validate_endpoint() %>%
+    `[[`("HelpLocation") %>%
     paste("score", sep = "/") %>%
-    scrape_help("#responseSummary pre")
+    scrape_text("#responseSummary pre")
 }
 
-#' @rdname sample_response
+#' @rdname get_response_sample
 #' @export
 #'
-sample_request <- function(endpoint){
+get_request_sample <- function(endpoint){
 
-  endpoint$HelpLocation %>%
+  endpoint %>%
+    validate_endpoint() %>%
+    `[[`("HelpLocation") %>%
     paste("score", sep = "/") %>%
-    scrape_help("#requestSummary pre")
+    scrape_text("#responseSummary pre")
 }
 
-scrape_help <- function(url, css){
+#' Scrapes text from node
+#'
+#' @keywords internal
+#'
+#' @param url    character, URL to scrape
+#' @param css    character, css selector to use to identify node
+#'
+#' @return character
+#'
+#' @export
+#'
+scrape_text <- function(url, css){
 
   result <-
     xml2::read_html(url) %>%

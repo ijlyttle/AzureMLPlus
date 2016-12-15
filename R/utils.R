@@ -7,8 +7,11 @@
 #' was taken from the source code AzureML package. Perhaps this function can be a part
 #' of the AzureML package so that the source code can be "returned".
 #'
-#' @param endpoint    \code{AzureML::\link[AzureML]{endpoints}} member or
-#'    \code{AzureML::\link[AzureML]{services}} member
+#' @param endpoint Either an AzureML web service endpoint returned by
+#'   \code{AzureML::\link[AzureML]{publishWebService}},
+#'   \code{AzureML::\link[AzureML]{endpoints}},
+#'   or simply an AzureML web service from
+#'   \code{AzureML::\link[AzureML]{services}};
 #'
 #' @return \code{endpoint}
 #' @export
@@ -20,15 +23,14 @@ validate_endpoint <- function(endpoint){
   # I would rather ask the AzureML maintainers if they would consider a
   # function like this one, then I could use theirs.
   #
-  if(AzureML::is.Service(endpoint))
-  {
+  if (AzureML::is.Service(endpoint)) {
     if(nrow(endpoint) > 1) endpoint = endpoint[1, ]
     default <- endpoint$DefaultEndpointName
     endpoint <- AzureML::endpoints(attr(endpoint, "workspace"), endpoint)
     endpoint <- subset(endpoint, Name = default)
   }
 
-  if(!AzureML::is.Endpoint(endpoint)) {
+  if (!AzureML::is.Endpoint(endpoint)) {
     stop("Invalid endpoint. Use publishWebservice() or endpoints() to create or obtain a service endpoint.")
   }
 

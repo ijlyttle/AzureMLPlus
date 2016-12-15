@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • AzureMLPlus</title>
+<title>Validate an endpoint — validate_endpoint • AzureMLPlus</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -34,7 +34,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -75,40 +75,47 @@
       </header>
 
       <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Function reference</h1>
-      <h4>version&nbsp;0.0.0.9000</h4>
+    <h1>Validate an endpoint</h1>
     </div>
 
-    <div class="contents">
-      <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-      <p class="section-desc"></p>
-
-      
-      <p><a href="pipe.html">Pipe</a></p>
-      <ul>
-        <li><code><a href="pipe.html">%&gt;%</a></code></li>
-      </ul>
-      
-      <p><a href="sample_response.html">Get sample request/response payloads</a></p>
-      <ul>
-        <li><code><a href="sample_response.html">sample_request</a></code></li><li><code><a href="sample_response.html">sample_response</a></code></li>
-      </ul>
-      
-      <p><a href="validate_endpoint.html">Validate an endpoint</a></p>
-      <ul>
-        <li><code><a href="validate_endpoint.html">validate_endpoint</a></code></li>
-      </ul>
     
-    </div>
-  </div>
+    <p>Will throw an error or return the <code>endpoint</code>. If a service is sent, its default
+endpoint is returned.</p>
+    
 
+    <pre><span class='fu'>validate_endpoint</span>(<span class='no'>endpoint</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <dl class="dl-horizontal">
+      <dt>endpoint</dt>
+      <dd><code>AzureML::<a href='http://www.rdocumentation.org/packages/AzureML/topics/endpoints'>endpoints</a></code> member or
+<code>AzureML::<a href='http://www.rdocumentation.org/packages/AzureML/topics/services'>services</a></code> member</dd>
+    </dl>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>endpoint</code></p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The source code for this code
+was taken from the source code AzureML package. Perhaps this function can be a part
+of the AzureML package so that the source code can be &quot;returned&quot;.</p>
+    
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+          </ul>
+
   </div>
 </div>
 

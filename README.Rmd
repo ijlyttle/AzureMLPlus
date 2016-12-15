@@ -12,9 +12,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/AzureMLPlus)](https://cran.r-project.org/package=AzureMLPlus)
-[![Travis-CI Build Status](https://travis-ci.org/ijlyttle/AzureMLPlus.svg?branch=master)](https://travis-ci.org/ijlyttle/AzureMLPlus)
-[![Coverage Status](https://img.shields.io/codecov/c/github/ijlyttle/AzureMLPlus/master.svg)](https://codecov.io/github/ijlyttle/AzureMLPlus?branch=master)
+<!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/AzureMLPlus)](https://cran.r-project.org/package=AzureMLPlus) -->
+<!-- [![Travis-CI Build Status](https://travis-ci.org/ijlyttle/AzureMLPlus.svg?branch=master)](https://travis-ci.org/ijlyttle/AzureMLPlus) -->
+<!-- [![Coverage Status](https://img.shields.io/codecov/c/github/ijlyttle/AzureMLPlus/master.svg)](https://codecov.io/github/ijlyttle/AzureMLPlus?branch=master) -->
 
 
 # AzureMLPlus

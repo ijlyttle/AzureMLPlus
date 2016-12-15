@@ -7,8 +7,11 @@
 validate_endpoint(endpoint)
 }
 \arguments{
-\item{endpoint}{\code{AzureML::\link[AzureML]{endpoints}} member or
-\code{AzureML::\link[AzureML]{services}} member}
+\item{endpoint}{Either an AzureML web service endpoint returned by
+\code{AzureML::\link[AzureML]{publishWebService}},
+\code{AzureML::\link[AzureML]{endpoints}},
+or simply an AzureML web service from
+\code{AzureML::\link[AzureML]{services}};}
 }
 \value{
 \code{endpoint}

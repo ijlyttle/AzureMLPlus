@@ -3,9 +3,8 @@ Title: Additional functions to use with AzureML package
 Version: 0.0.0.9000
 Authors@R: c(
     person(given = "Ian", family = "Lyttle", email = "ian.lyttle@schneider-electric.com", role = c("aut", "cre", "cph")),
-    person(family = "Schneider Electric", role = c("cph", "fnd"))
-    person(family = "Microsoft Corporation", role = c("ctb", "cph"),
-    comment = "AzureML package"),
+    person(family = "Schneider Electric", role = c("cph", "fnd")),
+    person(family = "Microsoft Corporation", role = c("ctb", "cph"), comment = "AzureML package")
   )
 Description: Additional functions to use with AzureML package.
 Depends:
@@ -19,8 +18,12 @@ Imports:
     AzureML,
     magrittr,
     xml2,
-    rvest
+    rvest,
+    curl
 Suggests:
     testthat,
-    covr
+    covr,
+    knitr,
+    rmarkdown
 RoxygenNote: 5.0.1
+VignetteBuilder: knitr

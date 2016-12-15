@@ -1,0 +1,82 @@
+---
+title: "Manifesto"
+author: "Ian Lyttle"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Manifesto}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+I find that writing these packages gets easier if I can map out a few steps ahead what the API will (should?) look like.
+
+The overall plan is to parallel the functionality of the **AzureML** package, with an eye on making things easier to pull out diagnostics. Another (somewhat selfish) motivation is to try to understand better how **AzureML** works. A final (selfish) motivation is to try to implement the **httr** package.
+
+## Vocabulary
+
+### Verbs
+
+It seems a good idea to start with the verbs.
+
+- `consume` Acts on an `endpoint`, returns a `request_response` object. The term *consume* is taken from **AzureML**, we use it to consume and endpoint evaluate a model. By invoking a `consume` function, we are making a call to an endpoint. Within this vocabulary, we could think of `consume` as being equivalent to a `get_request_response`, as we will return a `request_response` object.
+  
+- `get`: Often implied, if a function name begins with a noun, it is an implied `get`. If a function name begins with `get_` this signifies that calling the function will make a web-service call (for example, to retrieve documentation)
+
+- `extract`: acts on a `response_body`, returns a dataframe
+
+- `encode`: acts on a `global_param`, returns a `globalParam`
+
+- `validate`: acts on any number of objects, either returns the same type of object or throws an error. One exception to this will be `validate_endpoint()`, which can act on a `service` or an `endpoint`, but returns an `endpoint`.
+
+## Nouns
+
+- `workspace`, `service`, `endpoint`: **AzureML** workspace, service, endpoint
+
+- `request_sample`, `response_sample`: character (JSON format), these contain the specifications for the `request_body` and `response_body`.
+
+- `request_body`, `response_body`: character (JSON format), these contain what was actually sent to and received from the endpoint.
+
+- `url`: character, a URL
+
+- `inputs`: list - a named list of dataframes to be used at the body of the request
+
+- `request_timestamp`, `response_timestamp`: POSIXct object, the time (according to client computer) when the request was made, or the response received.
+
+- `request_response` an S3 object, list with members: `url`, `success` (logical), `request_timestamp`, `request_body`, `response_timestamp`, `response_body`
+
+- `global_parameters`, `globalParameters`: these are lists of global parameters; they convey the same information, but the formats are slightly different. For `global_parameters`, the list can be heterogeneous; we want to store information in an R-like way, for example: `list(a = 3, b = TRUE)`. For `globalParameters`, it will be a homogeneous, flat list with character members, for example: `list(a = "3", b = "true")`. We will have a helper function to translate `global_parameters` to `globalParameters`. 
+
+- `request`, `response` Not yet allocted, these will be associated to the **httr** request and response.
+  
+- `json_viewer`, this is a great htmlwidget from @timelyportfolio (package **listviewer**) that we can use to diagnose things, using samples and bodies. 
+
+- `input_dataframe` helper function to send a single dataframe as `inputs`
+
+## Functions
+
+- `validate_endpoint`: `function(endpoint)` 
+
+- `get_request_sample`, `get_response_sample`: `function(endpoint)`
+
+- `json_viewer`: `function(...)`, wrapper for `listviewer::jsonedit()`
+
+- `consume_endpoint`: `function(endpoint, ...)`
+
+- `url`, `success`, `request_timestamp`, `request_body`, `response_timestamp`, `response_body`, : `function(request_response)`
+
+- `extract_data`: `function(response_body, response_sample, ...)`
+
+- `validate_inputs`: `function(inputs, request_sample)` for now, inputs have to be dataframes
+
+- `validate_globalParameters`: `function(globalParameters, request_sample)`
+
+- `encode_global_parameters`: `function(global_parameters)`
+
+## Note to self
+
+Once things are working with Sylvain's web service, be sure to do the documentation (functions and vignettes) using the public endpoints exposed by Microsoft.
+
+
+
+
