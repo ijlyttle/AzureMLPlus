@@ -72,7 +72,8 @@ parse_response <- function(response_body, response_sample, element = 1){
 
   result <-
     body_data %>%
-    readr::type_convert(col_types = do.call(readr::cols, col_spec))
+    readr::type_convert(col_types = do.call(readr::cols, col_spec)) %>%
+    tibble::as_tibble()
 
   result
 }
