@@ -20,7 +20,8 @@ Imports:
     xml2,
     rvest,
     curl,
-    lubridate
+    lubridate,
+    tibble
 Suggests:
     testthat,
     covr,
