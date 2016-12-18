@@ -8,9 +8,11 @@
 
 - adds `validate_inputs()` and `validate_globalParamaters()`
 
-- adds `parse_response()` function to get a dataframe from a response body, using a response sample as a template
-
 ## Done
+
+- adds `obscure_authorization_token()` and `obscure_endpoint_keys()` to help make printing "safer".
+
+- adds `parse_response()` function to get a dataframe from a response body, using a response sample as a template
 
 - adds `request_body()`, `response_body()` accessors for `azureml_request_response`
 

@@ -37,3 +37,56 @@ validate_endpoint <- function(endpoint){
   endpoint
 }
 
+#' Obscure an authorization token
+#'
+#' This function takes a JSON string and replaces the `"authorization_token"`
+#' field with some replacement text. It is useful for demonstrating credentials
+#' without compromising security.
+#'
+#'
+#' @param x           character (JSON), AzureML credentials
+#' @param replacement character, replacement for key
+#'
+#' @return character (JSON), \code{x} with text replaced
+#' @seealso \code{\link{obscure_endpoint_keys}}
+#'
+#' @export
+#'
+obscure_authorization_token <- function(x, replacement = "<token_goes_here>"){
+
+
+  # ("authorization_token"\\s*:\\s*")   key for authorization token,
+  #                                     non-strict on whitespace
+  # ([^"]*)                             anything that is not a quote
+  # (")                                 quote
+  #
+  pattern <- '("authorization_token"\\s*:\\s*")([^"]*)(")'
+
+  sub(pattern, x, replacement = paste0("\\1", replacement, "\\3"))
+}
+
+#' Obscure the keys in an endpoint
+#'
+#' This can be useful step to take before displaying information
+#' about an endpoint.
+#'
+#' @inheritParams validate_endpoint
+#' @param replacement character, replacement for key
+#'
+#' @return \code{endpoint}, with \code{PrimaryKey} and \code{SecondaryKey}
+#'   obscured
+#'
+#' @seealso \code{\link{obscure_authorization_token}}
+#'
+#' @export
+#'
+obscure_endpoint_keys <- function(endpoint, replacement = "<key_goes_here>"){
+
+  endpoint <- validate_endpoint(endpoint)
+
+  endpoint[["PrimaryKey"]] <- "<key_goes_here>"
+  endpoint[["SecondaryKey"]] <- "<key_goes_here>"
+
+  endpoint
+}
+
